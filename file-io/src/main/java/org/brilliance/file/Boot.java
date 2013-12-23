@@ -77,19 +77,14 @@ public class Boot {
 		input.close();
 		**/
 		
-		
-		System.out.println(new Date());
-		FileInputStream input = new FileInputStream("/Users/user/Downloads/66张.rar");
-		InputStreamReader  inputStreamReader = new InputStreamReader(input);
-		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);	
-		StringBuffer stringBuffer = new StringBuffer();
-		String tempStringLine = null; //bufferedReader.readLine();
-		
-		while((tempStringLine = bufferedReader.readLine()) != null){
-			//System.out.println(tempStringLine);
-		}
-		System.out.println(stringBuffer.toString());
-		System.out.println(new Date());
+		NormalFileReader nr = new NormalFileReader("/mnt/log/mysql-slow.log", new FileCallBackInterface(){
+
+			public void process(String str) {
+				System.out.println(str);
+			}
+			
+		});
+		nr.iterate();
 		
 	}
 
